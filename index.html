@@ -64,7 +64,16 @@
         self.player.setLoadingDiv(loadingDiv);
 
         //File url.
-        var videoFileUrl = "video/h265_high.mp4";
+        var videoFileUrl;
+        var url = new URL(location.href);
+        const playType = url.searchParams.get('type');
+        if (playType === 'mp4') {
+            videoFileUrl = "video/h265_high.mp4";
+        } else if (playType === 'flv_264') {
+            videoFileUrl = 'video/flowplayer-700.flv'
+        } else {
+            videoFileUrl = "video/3954_432863_1200.flv"
+        }
 
         //Formated logger.
         var logger = new Logger("Page");

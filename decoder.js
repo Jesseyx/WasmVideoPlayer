@@ -9,7 +9,7 @@ self.importScripts("libffmpeg.js");
 
 function Decoder() {
     this.logger             = new Logger("Decoder");
-    this.coreLogLevel       = 0;
+    this.coreLogLevel       = 2;
     this.accurateSeek       = true;
     this.wasmLoaded         = false;
     this.tmpReqQue          = [];

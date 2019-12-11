@@ -144,7 +144,7 @@ void ffmpegLogCallback(void* ptr, int level, const char* fmt, va_list vl) {
     simpleLog("%s", line);
 }
 
-int openCodecContext(AVFormatContext *fmtCtx, enum AVMediaType type, int *streamIdx, AVCodecContext **decCtx) {
+int openCodecContext(AVFormatContext *fmtCtx, enum FF_AVMediaType type, int *streamIdx, AVCodecContext **decCtx) {
     int ret = 0;
     do {
         int streamIndex		= -1;
@@ -465,7 +465,7 @@ int64_t seekCallback(void *opaque, int64_t offset, int whence) {
     int64_t ret         = -1;
     int64_t pos         = -1;
     int64_t req_pos     = -1;
-    //simpleLog("seekCallback %lld %d.", offset, whence);
+    simpleLog("seekCallback %lld %d.", offset, whence);
     do {
         if (decoder == NULL || decoder->fp == NULL) {
             break;
@@ -612,7 +612,7 @@ ErrorCode openDecoder(int *paramArray, int paramCount, long videoCallback, long 
 
         r = openCodecContext(
             decoder->avformatContext,
-            AVMEDIA_TYPE_VIDEO,
+            FF_AVMEDIA_TYPE_VIDEO,
             &decoder->videoStreamIdx,
             &decoder->videoCodecContext);
         if (r != 0) {
@@ -632,7 +632,7 @@ ErrorCode openDecoder(int *paramArray, int paramCount, long videoCallback, long 
 
         r = openCodecContext(
             decoder->avformatContext,
-            AVMEDIA_TYPE_AUDIO,
+            FF_AVMEDIA_TYPE_AUDIO,
             &decoder->audioStreamIdx,
             &decoder->audioCodecContext);
         if (r != 0) {
@@ -868,7 +868,7 @@ ErrorCode seekTo(int ms, int accurateSeek) {
 }
 
 int main() {
-    //simpleLog("Native loaded.");
+    simpleLog("Native loaded...., test do");
     return 0;
 }
 
